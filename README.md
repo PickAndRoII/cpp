@@ -1,4 +1,4 @@
-# c++ laboratories
+# C++ laboratories
 
 Lab exercises from my 3rd and 4th semester on AGH University of Science and Technology.
 - at the beginning of each lab we got one ready-made file that we could not edit,
