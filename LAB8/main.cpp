@@ -1,61 +1,56 @@
-// Nazwa pliku wykonywalnego: Rational
-
 // Prosze dopisac kod, dodac nowe pliki, tak aby program wykonywal
 // sie, a wynik jego dzialania byl taki sam jak podany na końcu tego
-// pliku.
+// pliku. 
 
-// Prosze napisac klase Rational reprezentujacą liczby wymierne (licznik/mianownik).
-// Dodatkowo, proszę zaimplementować metody, funkcje działające na liczbach typu Rational.
-// Metody te mogą być zaimplementowane w ramach klasy Fun;
+// Po raz kolejny i pewnie nie ostatni piszemy klase, ktora odpowiada
+// klasie std::string. Nalezy dodac podstawowe operatory do obslugi 
+// lancucha znakow: ==, =, +, *, <<
 
-// Pliku MyMakefileWorkHere.cxx, nie wolno modyfikowac. Nie mozna zmieniac
-// jego nazwy ani rozszerzenia.
+// Reszta poleceń standardowa.
 
-// Ostateczny program powinien byc przyjazny dla programisty (miec
-// czytelny i dobrze napisany kod). 
+// !!! UWAGA !!! 
+// Przy wykonaniu tego zadania nie wolno korzystac z std::string!
 
-
+#include "MyString.h"
 #include <iostream>
-#include <cmath>
-#include "MyMakefileWorkHere.hxx"
+
+using namespace std;
 
 int main() {
-  
-  Rational Raz(1, 2);
-  Raz.Print();
+	MyString s0("Szczesliwego Nowego Roku");  
+	MyString s1("Szczesliwego nowego roku");
+	const MyString s2("Szczesliwego nowego roku");  
 
-  const Rational Dwa(2, 3);
-  Dwa.Print();
+	if ( s0 == s1 )  
+		cout << " s0 i s1 sa identyczne" << endl;
+	if ( s1 == s2 )  
+		cout << " s1 i s2 sa identyczne" << endl;
+	if ( s2 == s1 )  
+		cout << " s2 i s1 sa identyczne" << endl;
 
-  const Rational Wynik0 = Fun::Add(Dwa,Dwa);
-  Wynik0.Print();
+	s1.Print();
+	MyString s3 = s2 + " tu i teraz,";
+	s3.Print();
+	MyString s4 = s1 + ". " + s1 + " - " + s2 + '!'; // uwaga na typ char
+	s4.Print();
 
-  Rational Wynik1 = Fun::Multiply(Raz, Dwa);
-  Wynik1.Print();
+	MyString s5 = 2 * MyString("*");
+	MyString s6 = s5 + (const MyString&)s5*4;
+	s6.Print();
+	
+	s6 = s1;
+	cout << s6 << endl;
+	s6[20] = 'R';
+	cout << s6 << endl;
 
-  Rational Wynik2 = Fun::Add(Raz, 5);
-  Wynik2.Print();
-
-  Rational Wynik3 = Fun::Divide(10, Dwa);
-  Wynik3.Print();
-
-  float wynikF = std::sqrt(Wynik3);
-  std::cout<< wynikF << std::endl;
-
-  Fun::Average(Raz);
-  Fun::Average(Dwa);
-    std::cout << "Average: " << float(Fun::Average()) <<std::endl;
-
-  return 0;
 }
-
-/** Wynik dzialania programu:
-1/2
-2/3
-4/3
-1/3
-11/2
-15
-3.87298
-Average: 0.583333
+/* wynik
+ s1 i s2 sa identyczne
+ s2 i s1 sa identyczne
+Szczesliwego nowego roku
+Szczesliwego nowego roku tu i teraz,
+Szczesliwego nowego roku. Szczesliwego nowego roku - Szczesliwego nowego roku!
+**********
+Szczesliwego nowego roku
+Szczesliwego nowego Roku
 */
